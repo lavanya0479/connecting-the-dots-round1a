@@ -17,7 +17,7 @@ This repository contains a solution for **Round 1A** of the **"Connecting the Do
 ---
 
 ## 📁 Folder Structure
-
+```bash
 connecting_the_dots/
 ├── Dockerfile
 ├── requirements.txt
@@ -47,7 +47,8 @@ docker run --rm ^
   --network none ^
   pdf-outline-extractor
 
-⚙️ Technologies
+---
+## ⚙️ Technologies
 Python 3.10
 
 PyMuPDF (fitz)
