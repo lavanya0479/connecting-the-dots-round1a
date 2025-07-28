@@ -31,7 +31,7 @@ connecting_the_dots/
 │ ├── output/
 │ └── schema/
 │ └── output_schema.json
-
+```
 
 ---
 
@@ -46,7 +46,7 @@ docker run --rm ^
   -v "${PWD}/sample_dataset/output:/app/output" ^
   --network none ^
   pdf-outline-extractor
-
+```
 ---
 ## ⚙️ Technologies
 Python 3.10
