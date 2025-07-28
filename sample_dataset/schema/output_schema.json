@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["documentTitle", "content"],
+  "properties": {
+    "documentTitle": {
+      "type": "string",
+      "description": "The filename of the PDF (without extension)"
+    },
+    "content": {
+      "type": "array",
+      "description": "List of headings found in the PDF",
+      "items": {
+        "type": "object",
+        "required": ["title", "level", "page"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "The heading text"
+          },
+          "level": {
+            "type": "string",
+            "enum": ["H1", "H2", "H3"],
+            "description": "The heading level"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "The page number (1-based index)"
+          }
+        }
+      }
+    }
+  }
+}
