@@ -1,16 +1,55 @@
-# Connecting the Dots – Round 1A
+# PDF Outline Extractor
 
-## 🧠 Objective
-Extract structured outline (Title, H1, H2, H3 with page numbers) from PDF files and output JSON format.
+This repository contains a solution for **Round 1A** of the **"Connecting the Dots" Challenge**. It extracts the **Title**, **H1**, **H2**, and **H3** sections (along with page numbers) from a collection of PDF documents and outputs a structured JSON per file.
 
-## 📁 Structure
-- `solution.py` — Main logic to process all PDFs from `/app/input` and create `/app/output/*.json`
-- `Dockerfile` — Builds containerized version for offline processing (no internet, CPU-only)
-- `requirements.txt` — Python dependencies (e.g., `PyMuPDF`)
-- `sample/input/` — Sample PDF(s)
-- `sample/output/` — Expected structured JSON output
+---
 
-## 🐳 Run with Docker
+## ✅ Features
+
+- Extracts:
+  - **Document Title** (from largest text on first page)
+  - **Headings** (H1, H2, H3) based on font size and indentation
+  - **Page numbers** for each section
+- Runs fully **offline**
+- Works inside a **Docker container**
+- Outputs valid JSON for each input PDF
+
+---
+
+## 📁 Folder Structure
+
+connecting_the_dots/
+├── Dockerfile
+├── requirements.txt
+├── process_pdfs.py
+├── schema/
+│ └── output_schema.json
+├── sample_dataset/
+│ ├── input/
+│ │ ├── file01.pdf
+│ │ └── file02.pdf
+│ ├── output/
+│ └── schema/
+│ └── output_schema.json
+
+
+---
+
+## 🐳 Docker Usage
+
+### 1. Build the Docker image:
+
 ```bash
-docker build -t adobe-solution .
-docker run --rm -v ${PWD}/input:/app/input -v ${PWD}/output:/app/output --network none adobe-solution
+docker build -t pdf-outline-extractor .
+docker run --rm ^
+  -v "${PWD}/sample_dataset/input:/app/input" ^
+  -v "${PWD}/sample_dataset/output:/app/output" ^
+  --network none ^
+  pdf-outline-extractor
+
+⚙️ Technologies
+Python 3.10
+
+PyMuPDF (fitz)
+
+Docker (CPU-only, ≤200MB image size)
